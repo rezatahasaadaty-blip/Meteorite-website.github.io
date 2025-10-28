@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سامانه تخصصی شناسایی و خرید و فروش شهاب‌سنگ‌ها</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2d3748;
+            --accent-color: #e53e3e;
+            --light-color: #f7fafc;
+            --text-color: #2d3748;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tahoma', 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: var(--box-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            color: var(--accent-color);
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1534447677768-be436bb09401?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1794&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #c53030;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background-color: var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: #2d3748;
+        }
+
+        section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-color);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .features {
+            background-color: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background-color: var(--light-color);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .database {
+            background-color: #f0f4f8;
+        }
+
+        .search-box {
+            display: flex;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            box-shadow: var(--box-shadow);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .search-box button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0 1.5rem;
+            cursor: pointer;
+        }
+
+        .meteorite-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .meteorite-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s;
+        }
+
+        .meteorite-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .meteorite-img {
+            height: 200px;
+            background-color: #ddd;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .meteorite-info {
+            padding: 1.5rem;
+        }
+
+        .meteorite-info h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .meteorite-info p {
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .price {
+            font-weight: bold;
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+        }
+
+        .identification {
+            background-color: white;
+        }
+
+        .identification-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .step {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .step-number {
+            background-color: var(--primary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .identification-form {
+            background-color: var(--light-color);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+        }
+
+        .marketplace {
+            background-color: #f0f4f8;
+        }
+
+        .market-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .tab {
+            padding: 1rem 2rem;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .tab.active {
+            color: var(--accent-color);
+            border-bottom: 3px solid var(--accent-color);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .payment-info {
+            background-color: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            text-align: center;
+        }
+
+        .payment-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .bank-card {
+            background: linear-gradient(135deg, #1a365d, #2d3748);
+            color: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin: 1.5rem 0;
+            text-align: right;
+        }
+
+        .bank-card h4 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .bank-card p {
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            margin: 0.5rem 0;
+        }
+
+        .bank-card .small {
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent-color);
+            bottom: 0;
+            right: 0;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column ul li a {
+            color: #cbd5e0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid #4a5568;
+            font-size: 0.9rem;
+            color: #cbd5e0;
+        }
+
+        .admin-panel {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 30px;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav ul li {
+                margin: 0 0.5rem 0.5rem;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .admin-panel {
+                bottom: 10px;
+                left: 10px;
+                font-size: 0.9rem;
+                padding: 8px 12px;
+            }
+            
+            .market-tabs {
+                flex-direction: column;
+            }
+            
+            .tab {
+                padding: 0.8rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-meteor"></i>
+                    <h1>سامانه شناسایی و فروش شهاب‌سنگ‌ها</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">صفحه اصلی</a></li>
+                        <li><a href="#features">امکانات</a></li>
+                        <li><a href="#database">پایگاه داده</a></li>
+                        <li><a href="#identification">شناسایی</a></li>
+                        <li><a href="#marketplace">خرید و فروش</a></li>
+                        <li><a href="#about">درباره ما</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>سامانه تخصصی شناسایی و خرید و فروش شهاب‌سنگ‌ها</h2>
+                <p>بر اساس نمونه‌های ثبت شده در بولتن جهانی شهاب‌سنگ‌ها</p>
+                <a href="#identification" class="btn">شناسایی نمونه من</a>
+                <a href="#marketplace" class="btn btn-secondary">خرید و فروش</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>امکانات سامانه</h2>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>پایگاه داده جامع</h3>
+                    <p>دسترسی به اطلاعات بیش از ۷۰,۰۰۰ شهاب‌سنگ ثبت شده در بولتن جهانی</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>جستجوی پیشرفته</h3>
+                    <p>امکان جستجو بر اساس نوع، مکان کشف، تاریخ و سایر ویژگی‌ها</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <h3>ابزار شناسایی</h3>
+                    <p>سیستم هوشمند برای کمک به شناسایی شهاب‌سنگ‌ها بر اساس ویژگی‌های فیزیکی</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3>بازار خرید و فروش</h3>
+                    <p>خرید و فروش مطمئن شهاب‌سنگ‌های تأیید شده با گارانتی اصالت</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="database" class="database">
+        <div class="container">
+            <div class="section-title">
+                <h2>پایگاه داده شهاب‌سنگ‌ها</h2>
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="جستجو در پایگاه داده...">
+                <button class="btn"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="meteorite-grid">
+                <div class="meteorite-card">
+                    <div class="meteorite-img" style="background-image: url('https://images.unsplash.com/photo-1519315901367-f5c20b0a17ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+                    <div class="meteorite-info">
+                        <h3>شهاب‌سنگ کندریت معمولی</h3>
+                        <p><strong>نوع:</strong> کندریت</p>
+                        <p><strong>محل کشف:</strong> صحرای آفریقا</p>
+                        <p><strong>تاریخ کشف:</strong> ۲۰۲۰</p>
+                        <div class="price">قیمت: ۵,۲۰۰۰۰,۰۰۰ تومان</div>
+                        <button class="btn">خرید</button>
+                    </div>
+                </div>
+                <div class="meteorite-card">
+                    <div class="meteorite-img" style="background-image: url('https://images.unsplash.com/photo-1464802686167-b939a6910659?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1450&q=80');"></div>
+                    <div class="meteorite-info">
+                        <h3>شهاب‌سنگ آهنی</h3>
+                        <p><strong>نوع:</strong> آهنی</p>
+                        <p><strong>محل کشف:</strong> قطب جنوب</p>
+                        <p><strong>تاریخ کشف:</strong> ۲۰۱۸</p>
+                        <div class="price">قیمت: ۸,۷۵۰۰۰,۰۰۰ تومان</div>
+                        <button class="btn">خرید</button>
+                    </div>
+                </div>
+                <div class="meteorite-card">
+                    <div class="meteorite-img" style="background-image: url('https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80');"></div>
+                    <div class="meteorite-info">
+                        <h3>شهاب‌سنگ مریخی</h3>
+                        <p><strong>نوع:</strong> مریخی</p>
+                        <p><strong>محل کشف:</strong> عمان</p>
+                        <p><strong>تاریخ کشف:</strong> ۲۰۱۵</p>
+                        <div class="price">قیمت: ۲۵۰۰۰,۰۰۰,۰۰۰ تومان</div>
+                        <button class="btn">خرید</button>
+                    </div>
+                </div>
+                <div class="meteorite-card">
+                    <div class="meteorite-img" style="background-image: url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1510&q=80');"></div>
+                    <div class="meteorite-info">
+                        <h3>شهاب‌سنگ قمری</h3>
+                        <p><strong>نوع:</strong> قمری</p>
+                        <p><strong>محل کشف:</strong></p>
+                        <p><strong>تاریخ کشف:</strong> ۲۰۱۲</p>
+                        <div class="price">قیمت: ۳,۰۰۰۰۰۰۰,۰۰۰ تومان</div>
+                        <button class="btn">خرید</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="identification" class="identification">
+        <div class="container">
+            <div class="section-title">
+                <h2>شناسایی شهاب‌سنگ</h2>
+            </div>
+            <div class="identification-steps">
+                <div class="step">
+                    <div class="step-number">۱</div>
+                    <div class="step-content">
+                        <h3>مشخصات فیزیکی</h3>
+                        <p>وزن، ابعاد، رنگ و بافت نمونه خود را وارد کنید</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">۲</div>
+                    <div class="step-content">
+                        <h3>ویژگی‌های سطحی</h3>
+                        <p>وجود پوسته گداخته، مغناطیس و سایر ویژگی‌ها</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">۳</div>
+                    <div class="step-content">
+                        <h3>تجزیه و تحلیل</h3>
+                        <p>سیستم نمونه شما را با پایگاه داده مقایسه می‌کند</p>
+                    </div>
+                </div>
+            </div>
+            <div class="identification-form">
+                <form>
+                    <div class="form-group">
+                        <label for="weight">وزن نمونه (گرم)</label>
+                        <input type="number" id="weight" placeholder="وزن نمونه را وارد کنید">
+                    </div>
+                    <div class="form-group">
+                        <label for="color">رنگ نمونه</label>
+                        <select id="color">
+                            <option value="">رنگ نمونه را انتخاب کنید</option>
+                            <option value="black">سیاه</option>
+                            <option value="brown">قهوه‌ای</option>
+                            <option value="gray">خاکستری</option>
+                            <option value="mixed">ترکیبی</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="texture">بافت سطح</label>
+                        <select id="texture">
+                            <option value="">بافت سطح را انتخاب کنید</option>
+                            <option value="smooth">صاف</option>
+                            <option value="rough">زبر</option>
+                            <option value="porous">متخلخل</option>
+                            <option value="regmaglypts">حفره‌های گداخته</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="magnetic">مغناطیس</label>
+                        <select id="magnetic">
+                            <option value="">آیا نمونه مغناطیسی است؟</option>
+                            <option value="yes">بله</option>
+                            <option value="no">خیر</option>
+                            <option value="weak">ضعیف</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">توضیحات اضافی</label>
+                        <textarea id="description" rows="4" placeholder="سایر ویژگی‌های نمونه خود را شرح دهید"></textarea>
+                    </div>
+                    <button type="submit" class="btn">تجزیه و تحلیل نمونه</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section id="marketplace" class="marketplace">
+        <div class="container">
+            <div class="section-title">
+                <h2>بازار خرید و فروش شهاب‌سنگ</h2>
+            </div>
+            
+            <div class="market-tabs">
+                <div class="tab active" data-tab="buy">خرید شهاب‌سنگ</div>
+                <div class="tab" data-tab="sell">فروش شهاب‌سنگ</div>
+                <div class="tab" data-tab="payment">روش پرداخت</div>
+            </div>
+            
+            <div class="tab-content active" id="buy-tab">
+                <div class="meteorite-grid">
+                    <div class="meteorite-card">
+                        <div class="meteorite-img" style="background-image: url('https://images.unsplash.com/photo-1519315901367-f5c20b0a17ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+                        <div class="meteorite-info">
+                            <h3>شهاب‌سنگ کندریت</h3>
+                            <p>وزن: ۱۵۰ گرم</p>
+                            <p>منطقه: صحرای آفریقا</p>
+                            <div class="price">۵,۲۰۰,۰۰۰۰ تومان</div>
+                            <button class="btn">افزودن به سبد خرید</button>
+                        </div>
+                    </div>
+                    <div class="meteorite-card">
+                        <div class="meteorite-img" style="background-image: url('https://images.unsplash.com/photo-1464802686167-b939a6910659?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1450&q=80');"></div>
+                        <div class="meteorite-info">
+                            <h3>شهاب‌سنگ آهنی</h3>
+                            <p>وزن: ۲۸۰ گرم</p>
+                            <p>منطقه: قطب جنوب</p>
+                            <div class="price">۸,۷۵۰,۰۰۰۰ تومان</div>
+                            <button class="btn">افزودن به سبد خرید</button>
+                        </div>
+                    </div>
+                    <div class="meteorite-card">
+                        <div class="meteorite-img" style="background-image: url('https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80');"></div>
+                        <div class="meteorite-info">
+                            <h3>شهاب‌سنگ مریخی</h3>
+                            <p>وزن: ۸۵ گرم</p>
+                            <p>منطقه: عمان</p>
+                            <div class="price">500000000تومان</div>
+                            <button class="btn">افزودن به سبد خرید</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="sell-tab">
+                <div class="identification-form">
+                    <h3>فرم ثبت شهاب‌سنگ برای فروش</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="sell-name">نام نمونه</label>
+                            <input type="text" id="sell-name" placeholder="نام نمونه خود را وارد کنید">
+                        </div>
+                        <div class="form-group">
+                            <label for="sell-type">نوع شهاب‌سنگ</label>
+                            <select id="sell-type">
+                                <option value="">نوع شهاب‌سنگ را انتخاب کنید</option>
+                                <option value="chondrite">کندریت</option>
+                                <option value="iron">آهنی</option>
+                                <option value="stony-iron">سنگی-آهنی</option>
+                                <option value="martian">مریخی</option>
+                                <option value="lunar">قمری</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="sell-weight">وزن (گرم)</label>
+                            <input type="number" id="sell-weight" placeholder="وزن نمونه را وارد کنید">
+                        </div>
+                        <div class="form-group">
+                            <label for="sell-price">قیمت پیشنهادی (تومان)</label>
+                            <input type="number" id="sell-price" placeholder="قیمت پیشنهادی خود را وارد کنید">
+                        </div>
+                        <div class="form-group">
+                            <label for="sell-description">توضیحات نمونه</label>
+                            <textarea id="sell-description" rows="4" placeholder="ویژگی‌های نمونه خود را شرح دهید"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="sell-images">آپلود تصاویر</label>
+                            <input type="file" id="sell-images" multiple>
+                        </div>
+                        <button type="submit" class="btn">ثبت برای فروش</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="payment-tab">
+                <div class="payment-info">
+                    <h3>روش پرداخت</h3>
+                    <p>برای خرید شهاب‌سنگ یا استفاده از خدمات شناسایی، مبلغ ۱,۰۰۰,۰۰۰ تومان به شماره کارت زیر واریز نمایید:</p>
+                    
+                    <div class="bank-card">
+                        <h4>شماره کارت</h4>
+                        <p>6280231253127723</p>
+                        <p>به نام: سامانه شهاب‌سنگ ایران</p>
+                        <div class="small">پس از واریز، تصویر فیش پرداختی را برای ما ارسال کنید.</div>
+                    </div> whtasapp ="big">
+                    
+                    <p>یا از طریق درگاه پرداخت آنلاین:</p>
+                    <button class="btn" style="margin-top: 1rem;">پرداخت آنلاین</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="about">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>درباره ما</h3>
+                    <p>سامانه شناسایی و فروش شهاب‌سنگ‌ها با هدف تسهیل شناسایی و خرید و فروش مطمئن شهاب‌سنگ‌ها بر اساس استانداردهای بولتن جهانی طراحی شده است.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>لینک‌های مفید</h3>
+                    <ul>
+                        <li><a href="#">بولتن جهانی شهاب‌سنگ‌ها</a></li>
+                        <li><a href="#">انجمن شهاب‌سنگ‌شناسی ایران</a></li>
+                        <li><a href="#">مقالات علمی</a></li>
+                        <li><a href="#">گالری تصاویر</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>تماس با ما</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i>استان گلستان </li>
+                        <li><i class="fas fa-phone"></i>هت تماس با مدیریت به ایمیل پیام بدید</li>
+                        <li><i class="fas fa-envelope"></i> rezasaadaty19@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>کلیه حقوق این سامانه محفوظ می‌باشد © ۱۴۰۲</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="admin-panel" id="adminToggle">
+        <i class="fas fa-cog"></i> پنل مدیریت
+    </div>
+
+    <script>
+        // اسکرول نرم برای لینک‌های داخلی
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // سیستم تب‌ها
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                // حذف کلاس active از همه تب‌ها و محتواها
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // افزودن کلاس active به تب انتخاب شده
+                this.classList.add('active');
+                
+                // نمایش محتوای مرتبط
+                const tabId = this.getAttribute('data-tab');
+                document.getElementById(`${tabId}-tab`).classList.add('active');
+            });
+        });
+
+        // شبیه‌سازی جستجو
+        document.querySelector('.search-box button').addEventListener('click', function() {
+            const searchTerm = document.querySelector('.search-box input').value;
+            if (searchTerm.trim() !== '') {
+                alert('جستجو برای: ' + searchTerm);
+                // در حالت واقعی، اینجا درخواست AJAX به سرور ارسال می‌شود
+            }
+        });
+
+        // شبیه‌سازی فرم شناسایی
+        document.querySelector('.identification-form form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('درخواست شما برای تجزیه و تحلیل نمونه ثبت شد. نتایج به زودی نمایش داده خواهد شد.');
+            // در حالت واقعی، اینجا داده‌ها به سرور ارسال می‌شوند
+        });
+
+        // شبیه‌سازی فرم فروش
+        document.querySelector('#sell-tab form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('اطلاعات شهاب‌سنگ شما برای فروش ثبت شد. پس از تأیید، در سایت نمایش داده خواهد شد.');
+        });
+
+        // شبیه‌سازی دکمه خرید
+        document.querySelectorAll('.meteorite-card .btn').forEach(button => {
+            if (button.textContent === 'خرید' || button.textContent === 'افزودن به سبد خرید') {
+                button.addEventListener('click', function() {
+                    const meteoriteName = this.closest('.meteorite-card').querySelector('h3').textContent;
+                    const price = this.closest('.meteorite-card').querySelector('.price').textContent;
+                    alert(`شهاب‌سنگ "${meteoriteName}" به سبد خرید شما افزوده شد.\n${price}`);
+                });
+            }
+        });
+
+        // پنل مدیریت
+        document.getElementById('adminToggle').addEventListener('click', function() {
+            alert('پنل مدیریت سایت باز شد. در این بخش می‌توانید محتوا، محصولات و کاربران را مدیریت کنید.');
+            // در حالت واقعی، اینجا پنل مدیریت باز می‌شود
+        });
+
+        // پرداخت آنلاین
+        document.querySelector('#payment-tab .btn').addEventListener('click', function() {
+            alert('درگاه پرداخت آنلاین باز شد. مبلغ ۱,۰۰۰,۰۰۰ تومان برای پرداخت آماده است.');
+        });
+
+        // بارگذاری صفحه
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('سایت شهاب‌سنگ با موفقیت بارگذاری شد');
+        });
+    </script>
+</body>
+</html>
